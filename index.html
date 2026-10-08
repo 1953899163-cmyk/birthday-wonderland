@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff7f1">
+  <meta name="description" content="一个可爱、轻盈、充满生日惊喜的互动生日网站。">
+  <title>Happy Pop · 生日游乐园</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-theme="candy">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3-1.7 4.3L6 9l4.3 1.7L12 15l1.7-4.3L18 9l-4.3-1.7L12 3Z"/><path d="m5 15-.9 2.1L2 18l2.1.9L5 21l.9-2.1L8 18l-2.1-.9L5 15ZM19 2l-.7 1.3L17 4l1.3.7L19 6l.7-1.3L21 4l-1.3-.7L19 2Z"/></symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="icon-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5A2.5 2.5 0 1 1 10 4.5L12 7Zm0 0h4.5A2.5 2.5 0 1 0 14 4.5L12 7Z"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></symbol>
+    <symbol id="icon-wand" viewBox="0 0 24 24"><path d="m15 4 5 5L8 21l-5-5L15 4Z"/><path d="m6 3 .7 1.8L8.5 5l-1.8.7L6 7.5l-.7-1.8L3.5 5l1.8-.7L6 3ZM19 14l.7 1.8 1.8.7-1.8.7L19 19l-.7-1.8-1.8-.7 1.8-.7L19 14Z"/></symbol>
+    <symbol id="icon-cake" viewBox="0 0 24 24"><path d="M4 11h16v9H4zM6 11V7h12v4M12 7V3M9 3h6M7 15c1.2 0 1.2 1 2.4 1s1.2-1 2.4-1 1.2 1 2.4 1 1.2-1 2.4-1 1.2 1 2.4 1"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></symbol>
+    <symbol id="icon-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h1.5a2 2 0 0 0 0-4H12a2 2 0 0 1 0-4h5.5A3.5 3.5 0 0 0 21 9.5C21 5.9 16.9 3 12 3Z"/><path d="M7.5 10h.01M9.5 6.8h.01M14 6.3h.01M17 9h.01"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5ZM15.5 8.5a5 5 0 0 1 0 7M18 6a8 8 0 0 1 0 12"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </svg>
+
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="Happy Pop 首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg class="icon"><use href="#icon-cake"></use></svg>
+          <i></i>
+        </span>
+        <span><b>Happy Pop</b><small>生日游乐园</small></span>
+      </a>
+
+      <button class="menu-toggle icon-button" id="menuToggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="mainNav">
+        <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="主导航">
+        <a class="nav-link active" href="#top">首页</a>
+        <a class="nav-link" href="#wish-lab">许愿机</a>
+        <a class="nav-link" href="#playground">小游戏</a>
+        <a class="nav-link" href="#toolbox">派对工具箱</a>
+      </nav>
+
+      <button class="header-cta" id="headerMusicToggle" type="button" aria-pressed="false">
+        <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span id="headerMusicLabel">播放生日歌</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <div class="eyebrow reveal" style="--delay: 0ms">
+          <svg class="icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg>
+          生日限定 · 只为你上线
+        </div>
+        <h1 id="heroTitle" class="hero-title reveal" style="--delay: 80ms">
+          把今天，过成一颗会发光的糖。
+        </h1>
+        <p class="hero-lead reveal" style="--delay: 160ms">写一句祝福、吹一根蜡烛、拆一个小礼物。所有可爱的小惊喜，都藏在这座生日游乐园里。</p>
+        <div class="hero-actions reveal" style="--delay: 240ms">
+          <a class="button button-primary" href="#wish-lab">
+            开始许愿
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+          </a>
+          <button class="button button-secondary" id="heroPlayMusic" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg>
+            播放生日快乐
+          </button>
+        </div>
+        <div class="hero-meta reveal" style="--delay: 320ms" aria-label="今日派对清单">
+          <span><b>12</b> 只气球</span>
+          <i aria-hidden="true"></i>
+          <span><b>88</b> 条彩带</span>
+          <i aria-hidden="true"></i>
+          <span><b>∞</b> 份好心情</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" style="--delay: 180ms">
+        <div class="hero-art-card" id="heroArtCard">
+          <div class="art-label art-label--top">
+            <svg class="icon" aria-hidden="true"><use href="#icon-heart"></use></svg>
+            Special day
+          </div>
+          <div class="art-label art-label--side">Today is yours</div>
+
+          <div class="balloon balloon--pink" aria-hidden="true"><i></i><span></span></div>
+          <div class="balloon balloon--blue" aria-hidden="true"><i></i><span></span></div>
+          <div class="balloon balloon--yellow" aria-hidden="true"><i></i><span></span></div>
+          <div class="floating-star star--one" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg></div>
+          <div class="floating-star star--two" aria-hidden="true"><svg class="icon"><use href="#icon-sparkles"></use></svg></div>
+
+          <div class="cake-scene cake-scene--image">
+            <img class="cake-illustration" src="./assets/birthday-cake-raster.png" alt="樱桃奶油生日蛋糕插画" width="939" height="1024" decoding="async">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="wish-section section-shell" id="wish-lab" aria-labelledby="wishTitle">
+      <div class="section-heading reveal">
+        <div>
+          <h2 id="wishTitle">魔法许愿机</h2>
+        </div>
+        <p>填一填，马上得到一张会变魔术的生日卡。</p>
+      </div>
+
+      <div class="wish-layout">
+        <form class="wish-form panel reveal" id="wishForm" novalidate>
+          <div class="panel-heading">
+            <span class="panel-icon" aria-hidden="true"><svg class="icon"><use href="#icon-wand"></use></svg></span>
+            <div><h3>写下生日愿望</h3><p>所有内容都只会留在你的浏览器里。</p></div>
+          </div>
+
+
+          <label class="field">
+            <span>想把什么写进卡片？ <em>必填</em></span>
+            <textarea id="birthdayMessage" name="birthdayMessage" rows="4" maxlength="72" aria-describedby="messageHelp">愿你的新一岁，甜甜的愿望都实现，喜欢的风景都遇见。</textarea>
+            <small id="messageHelp"><span id="messageCount">25</span>/72 个字</small>
+            <span class="field-error" id="messageError" aria-live="polite"></span>
+          </label>
+
+          <fieldset class="theme-picker">
+            <legend>给卡片选一套衣服</legend>
+            <div class="theme-options" role="group" aria-label="卡片主题">
+              <button class="theme-option is-selected" type="button" data-card-theme="candy" aria-pressed="true"><i class="swatch swatch--candy"></i>草莓软糖</button>
+              <button class="theme-option" type="button" data-card-theme="sky" aria-pressed="false"><i class="swatch swatch--sky"></i>云朵天空</button>
+              <button class="theme-option" type="button" data-card-theme="matcha" aria-pressed="false"><i class="swatch swatch--matcha"></i>抹茶奶油</button>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">
+              <svg class="icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg>
+              生成我的生日卡
+            </button>
+            <button class="button button-ghost" id="randomWish" type="button">换句祝福</button>
+          </div>
+        </form>
+
+        <div class="wish-preview-wrap reveal" style="--delay: 100ms">
+          <div class="birthday-card card-theme-candy" id="birthdayCard" aria-live="polite">
+            <div class="card-confetti" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="card-topline"><span>Happy birthday</span><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg></div>
+            <div class="card-person">
+              <span>TO.</span>
+              <h3 id="cardName">被全世界偏爱的你</h3>
+            </div>
+            <div class="card-age" aria-label="年龄">
+              <span id="cardAge">20</span><small>岁</small>
+            </div>
+            <p class="card-message" id="cardMessage">愿你的新一岁，甜甜的愿望都实现，喜欢的风景都遇见。</p>
+            <div class="card-footer">
+              <span>愿今天所有风，都吹向你。</span>
+              <div class="mini-signature">with love <svg class="icon" aria-hidden="true"><use href="#icon-heart"></use></svg></div>
+            </div>
+          </div>
+          <div class="preview-actions">
+            <button class="button button-secondary" id="shareCard" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg>
+              分享这张卡
+            </button>
+            <span class="preview-hint">生成后可复制一段祝福文字</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="playground section-shell" id="playground" aria-labelledby="playTitle">
+      <div class="section-heading reveal">
+        <div>
+          <h2 id="playTitle">三分钟生日小游戏</h2>
+        </div>
+        <p>不用记规则，点一点就会开心。</p>
+      </div>
+
+      <div class="play-grid">
+        <article class="game-card game-card--cake panel reveal">
+          <div class="game-copy">
+            <h3>把蜡烛吹灭</h3>
+            <p>每点一次，就吹灭一根蜡烛。全部吹灭有惊喜。</p>
+            <button class="button button-primary" id="blowCandle" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#icon-wand"></use></svg>
+              <span id="candleButtonText">吹灭一根蜡烛</span>
+            </button>
+            <p class="game-status" id="candleStatus" aria-live="polite">还有 3 根蜡烛亮着</p>
+          </div>
+          <div class="mini-cake" id="miniCake" aria-hidden="true">
+            <div class="mini-cake-top">
+              <span class="mini-cherry mini-cherry--one"></span>
+              <span class="mini-cherry mini-cherry--two"></span>
+              <span class="mini-cherry mini-cherry--three"></span>
+            </div>
+            <div class="mini-cake-bottom">
+              <span class="mini-face"><i></i><i></i><b></b></span>
+              <span class="mini-cheek mini-cheek--left"></span>
+              <span class="mini-cheek mini-cheek--right"></span>
+              <span class="mini-hand mini-hand--left"></span>
+              <span class="mini-hand mini-hand--right"></span>
+            </div>
+            <div class="mini-plate"></div>
+            <div class="mini-candles">
+              <span><i></i></span>
+              <span><i></i></span>
+              <span><i></i></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card game-card--gift panel reveal" style="--delay: 80ms">
+          <div class="game-copy">
+            <h3>拆开迷你礼物</h3>
+            <p>六个盒子，六句偷偷准备好的祝福。</p>
+          </div>
+          <div class="gift-grid" id="giftGrid" aria-label="六个可点击的礼物盒">
+            <div class="gift-row">
+              <button class="gift-box" type="button" aria-label="拆开第 1 个礼物" aria-expanded="false" aria-controls="giftMessage1"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg><span></span></button>
+              <p class="gift-message" id="giftMessage1" aria-live="polite">点击拆开第 1 份祝福</p>
+            </div>
+            <div class="gift-row">
+              <button class="gift-box" type="button" aria-label="拆开第 2 个礼物" aria-expanded="false" aria-controls="giftMessage2"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg><span></span></button>
+              <p class="gift-message" id="giftMessage2" aria-live="polite">点击拆开第 2 份祝福</p>
+            </div>
+            <div class="gift-row">
+              <button class="gift-box" type="button" aria-label="拆开第 3 个礼物" aria-expanded="false" aria-controls="giftMessage3"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg><span></span></button>
+              <p class="gift-message" id="giftMessage3" aria-live="polite">点击拆开第 3 份祝福</p>
+            </div>
+            <div class="gift-row">
+              <button class="gift-box" type="button" aria-label="拆开第 4 个礼物" aria-expanded="false" aria-controls="giftMessage4"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg><span></span></button>
+              <p class="gift-message" id="giftMessage4" aria-live="polite">点击拆开第 4 份祝福</p>
+            </div>
+            <div class="gift-row">
+              <button class="gift-box" type="button" aria-label="拆开第 5 个礼物" aria-expanded="false" aria-controls="giftMessage5"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg><span></span></button>
+              <p class="gift-message" id="giftMessage5" aria-live="polite">点击拆开第 5 份祝福</p>
+            </div>
+            <div class="gift-row">
+              <button class="gift-box" type="button" aria-label="拆开第 6 个礼物" aria-expanded="false" aria-controls="giftMessage6"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg><span></span></button>
+              <p class="gift-message" id="giftMessage6" aria-live="polite">点击拆开第 6 份祝福</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card game-card--energy panel reveal" style="--delay: 160ms">
+          <div class="game-copy">
+            <h3>把许愿能量加满</h3>
+            <p>每一次点击，都会让今天的快乐多 10%。</p>
+          </div>
+          <div class="energy-meter">
+            <div class="energy-ring" id="energyRing" style="--progress: 0">
+              <div><b id="energyNumber">0</b><span>%</span></div>
+            </div>
+            <button class="button button-secondary" id="energyButton" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+              增加许愿能量
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="toolbox section-shell" id="toolbox" aria-labelledby="toolboxTitle">
+      <div class="section-heading reveal">
+        <div>
+          <h2 id="toolboxTitle">生日派对工具箱</h2>
+        </div>
+        <p>一套可以现场玩起来的可爱组件。</p>
+      </div>
+
+      <div class="toolbox-grid">
+        <article class="tool-card panel reveal">
+          <div class="tool-heading">
+            <span class="panel-icon panel-icon--blue" aria-hidden="true"><svg class="icon"><use href="#icon-palette"></use></svg></span>
+            <div><h3>换一套派对颜色</h3><p>整套页面的颜色都会跟着变。</p></div>
+          </div>
+          <div class="theme-swatches" role="group" aria-label="页面主题颜色">
+            <button class="theme-swatch theme-swatch--candy" type="button" data-page-theme="candy" aria-pressed="true"><i></i><span>草莓</span></button>
+            <button class="theme-swatch theme-swatch--sky" type="button" data-page-theme="sky" aria-pressed="false"><i></i><span>晴空</span></button>
+            <button class="theme-swatch theme-swatch--matcha" type="button" data-page-theme="matcha" aria-pressed="false"><i></i><span>抹茶</span></button>
+          </div>
+          <div class="token-row">
+            <span><i style="--token:#c52d5d"></i>#C52D5D</span>
+            <span><i style="--token:#ffd76a"></i>#FFD76A</span>
+            <span><i style="--token:#82b9ff"></i>#82B9FF</span>
+            <span><i style="--token:#6fc9ab"></i>#6FC9AB</span>
+          </div>
+        </article>
+
+        <article class="tool-card panel reveal" style="--delay: 80ms">
+          <div class="tool-heading">
+            <span class="panel-icon panel-icon--yellow" aria-hidden="true"><svg class="icon"><use href="#icon-sparkles"></use></svg></span>
+            <div><h3>组件试玩台</h3><p>按钮、开关、标签、进度、提示都能点。</p></div>
+          </div>
+          <div class="component-row">
+            <button class="button button-primary button-small" id="burstButton" type="button">发射彩带</button>
+            <button class="button button-secondary button-small" id="toastButton" type="button">显示提示</button>
+            <button class="button button-ghost button-small" id="surpriseButton" type="button">今日惊喜</button>
+            <button class="button button-primary button-small" type="button" disabled>禁用按钮</button>
+          </div>
+          <div class="component-row component-row--between">
+            <div class="toggle-wrap">
+              <span id="confettiLabel">彩带模式</span>
+              <button class="switch" id="confettiToggle" type="button" role="switch" aria-checked="true" aria-labelledby="confettiLabel"><i></i></button>
+            </div>
+            <button class="tag-button" id="tagButton" type="button" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="#icon-heart"></use></svg>
+              <span id="tagText">收藏今天</span>
+            </button>
+          </div>
+          <div class="progress-demo" aria-label="派对准备进度 78%">
+            <div><span>派对准备度</span><b>78%</b></div>
+            <div class="progress-track"><i></i></div>
+          </div>
+        </article>
+
+        <article class="tool-card panel reveal" style="--delay: 160ms">
+          <div class="tool-heading">
+            <span class="panel-icon panel-icon--mint" aria-hidden="true"><svg class="icon"><use href="#icon-music"></use></svg></span>
+            <div><h3>音乐盒说明书</h3><p>纯音乐，无演唱。可随时暂停和调音量。</p></div>
+          </div>
+          <div class="music-info">
+            <div class="record" aria-hidden="true"><i></i></div>
+            <div>
+              <strong>Happy Birthday</strong>
+              <span>音乐盒 · 纯器乐版</span>
+            </div>
+          </div>
+          <div class="volume-row">
+            <svg class="icon" aria-hidden="true"><use href="#icon-volume"></use></svg>
+            <label for="volumeRange" class="sr-only">背景音乐音量</label>
+            <input id="volumeRange" type="range" min="0" max="100" value="52" step="1">
+            <output id="volumeOutput" for="volumeRange">52%</output>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="final-cta section-shell reveal" aria-labelledby="ctaTitle">
+      <div class="cta-decor cta-decor--left" aria-hidden="true"></div>
+      <div class="cta-decor cta-decor--right" aria-hidden="true"></div>
+      <svg class="cta-icon" aria-hidden="true"><use href="#icon-cake"></use></svg>
+      <h2 id="ctaTitle">现在，把快乐调到最大声。</h2>
+      <p>不管几岁，今天都值得被认真庆祝。</p>
+      <div class="hero-actions">
+        <button class="button button-primary" id="finalSurprise" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#icon-sparkles"></use></svg>
+          再来一次惊喜
+        </button>
+        <button class="button button-secondary" id="copyWish" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg>
+          复制生日祝福
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <a class="brand brand--footer" href="#top">
+      <span class="brand-mark" aria-hidden="true"><svg class="icon"><use href="#icon-cake"></use></svg><i></i></span>
+      <span><b>Happy Pop</b><small>今天也要快乐</small></span>
+    </a>
+    <p>Made with sugar, confetti and one very tiny music box.</p>
+    <p>© <span id="year"></span> Birthday Wonderland</p>
+  </footer>
+
+  <div class="music-player" id="musicPlayer" aria-label="背景音乐播放器">
+    <button class="music-play icon-button" id="musicToggle" type="button" aria-label="播放生日快乐背景音乐" aria-pressed="false">
+      <svg class="icon icon-play"><use href="#icon-play"></use></svg>
+      <svg class="icon icon-pause"><use href="#icon-pause"></use></svg>
+    </button>
+    <div class="music-copy">
+      <strong>生日快乐 · 纯音乐</strong>
+      <span id="musicStatus">点一下播放音乐盒旋律</span>
+    </div>
+    <div class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <audio id="birthdayAudio" src="./assets/happy-birthday-instrumental.wav" loop preload="auto"></audio>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+    <span class="toast-icon" aria-hidden="true"><svg class="icon"><use href="#icon-check"></use></svg></span>
+    <span id="toastText">已经准备好啦！</span>
+  </div>
+
+  <dialog class="surprise-dialog" id="surpriseDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-inner">
+      <button class="icon-button dialog-close" id="dialogClose" type="button" aria-label="关闭惊喜弹窗"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
+      <div class="dialog-icon" aria-hidden="true"><svg class="icon"><use href="#icon-gift"></use></svg></div>
+      <h2 id="dialogTitle">送你一条今日好运签</h2>
+      <p id="dialogText">今天的你，会被一件很小的事情温柔击中。</p>
+      <button class="button button-primary" id="anotherFortune" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#icon-wand"></use></svg>
+        再抽一条
+      </button>
+    </div>
+  </dialog>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
